@@ -30,12 +30,6 @@ for (let i = 0; i < 20; i++) {
     const g = Math.floor(Math.random() * 256)
     const b = Math.floor(Math.random() * 256)
 
-    while (r === g && g === b) {
-        let r = Math.floor(Math.random() * 256)
-        let g = Math.floor(Math.random() * 256)
-        let b = Math.floor(Math.random() * 256)
-    }
-
     block.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 
     block.style.width = '50px';
@@ -50,6 +44,41 @@ for (let i = 0; i < 20; i++) {
 
 const input = document.createElement('input');
 document.body.appendChild(input);
+
+input.addEventListener('input', function() {
+    const letter = input.value;
+
+    if (letter) {
+        const h1 = document.createElement("h1")
+        h1.textContent = letter;
+        document.body.appendChild(h1);
+
+        input.value= '';
+    }
+});
+
+
+// Exercise 4:
+
+const button = document.createElement('button');
+button.textContent = "click";
+button.addEventListener('click', function() {
+    clickNewButton();
+    button.remove();
+})
+document.body.appendChild(button);
+
+function clickNewButton() {
+    const newButton = document.createElement("button");
+    newButton.textContent = `try again ${Math.random().toString(36).substring(7)}`;
+    document.body.appendChild(newButton);
+
+    newButton.addEventListener("click", function() {
+        clickNewButton();
+        newButton.remove();
+    });
+}
+
 
 
 
